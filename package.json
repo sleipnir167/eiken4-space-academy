@@ -1,0 +1,11 @@
+{
+  "name": "eiken4-space-academy",
+  "private": true,
+  "type": "module",
+  "description": "英検4級の合格をめざす学習PWA（手書きスペル判定・SRS単語帳・並べかえ・AI解説・AIスピーキング）",
+  "scripts": {
+    "start": "python3 -m http.server 8767",
+    "check": "node tools/check-data.mjs",
+    "icons": "python3 tools/make-icons.py"
+  }
+}

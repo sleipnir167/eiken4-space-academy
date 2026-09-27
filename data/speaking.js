@@ -1,0 +1,198 @@
+// 4級スピーキングテストの問題カード（本番の形式にならったオリジナル問題）
+//  流れ：パッセージの黙読（20秒）→ 音読 → No.1・No.2（パッセージについて）→ No.3（イラストについて）→ No.4（あなた自身について）
+//  keys: 自動採点に使うキーワード（それぞれのグループのどれか1つを含めばOK）
+import * as S from '../js/scenes.js';
+
+const P = S.person;
+const GRAY = S.HAIR.gray;
+
+export const CARDS = [
+  {
+    id: 'cooking',
+    title: "Mika's Hobby",
+    passage: 'Mika is a junior high school student. She likes cooking very much. She often makes cookies with her grandmother on weekends. She wants to be a cook in the future.',
+    ja: 'ミカの趣味｜ミカは中学生です。彼女は料理をすることが大好きです。週末にはよくおばあさんとクッキーを作ります。彼女は将来、料理人になりたいと思っています。',
+    scene: () => S.scene('kitchen', [
+      S.counter(300, 250, 170), S.sink(372, 174),
+      S.table(40, 276, 190), S.cookies(135, 216),
+      S.cat(110, 276, 0.85, '#f2a65a', 'sleep'),
+      P({ x: 262, y: 286, s: 1.15, pose: 'cook', face: -1, kid: true, hair: 'pony', hairColor: S.HAIR.black, shirt: '#ff7a59', pants: '#2b2f77', skirt: true }),
+      P({ x: 350, y: 286, s: 1.15, pose: 'hold', hold: 'cup', face: -1, hair: 'bun', hairColor: GRAY, shirt: '#7c6cf0', pants: '#40506a', skirt: true, skin: S.SKIN[1] }),
+    ]),
+    q1: { q: 'Please look at the passage. What does Mika like?', a: 'She likes cooking.', keys: [['cooking', 'cook']] },
+    q2: { q: 'When does Mika make cookies with her grandmother?', a: 'On weekends.', keys: [['weekends', 'weekend']] },
+    q3: { q: 'Please look at the picture. Where is the cat?', a: "It's under the table.", keys: [['under'], ['table']] },
+  },
+  {
+    id: 'library',
+    title: "Kenji's Saturday",
+    passage: 'Kenji likes reading books. He goes to the library every Saturday. He usually borrows three books about animals there. He wants to work at a zoo someday.',
+    ja: 'ケンジの土曜日｜ケンジは本を読むのが好きです。彼は毎週土曜日に図書館へ行きます。彼はたいていそこで動物についての本を3冊借ります。彼はいつか動物園で働きたいと思っています。',
+    scene: () => S.scene('library', [
+      S.desk(290, 280, 170), S.chair(262, 280, 1),
+      P({ x: 256, y: 280, s: 1.15, pose: 'sitread', hold: 'book', hair: 'long', hairColor: S.HAIR.brown, shirt: '#ff6fb5', pants: '#2b2f77', skirt: true, face: 1, seat: 40 }),
+      S.bookObj(410, 226, '#e76f51', 34, 8), S.bookObj(410, 218, '#2a9d8f', 30, 8),
+      P({ x: 110, y: 288, s: 1.2, pose: 'carry', hold: 'books', kid: true, hair: 'short', hairColor: S.HAIR.black, shirt: '#4cc9f0', pants: '#40506a', face: 1, skin: S.SKIN[1] }),
+    ]),
+    q1: { q: 'Please look at the passage. Where does Kenji go every Saturday?', a: 'He goes to the library.', keys: [['library']] },
+    q2: { q: 'How many books does Kenji usually borrow?', a: 'He usually borrows three books.', keys: [['three', '3']] },
+    q3: { q: 'Please look at the woman. What is she doing?', a: "She's reading a book.", keys: [['reading', 'read'], ['book', 'books']] },
+  },
+  {
+    id: 'park',
+    title: 'Green Park',
+    passage: "There is a big park near Emi's house. Many people take walks there in the morning. In spring, people enjoy the beautiful flowers in the park.",
+    ja: 'グリーン公園｜エミの家の近くには大きな公園があります。朝には多くの人がそこを散歩します。春には、人々は公園の美しい花を楽しみます。',
+    scene: () => S.scene('park', [
+      S.tree(70, 226, 1.1), S.bird(46, 150, 1.1, '#4cc9f0'),
+      S.flower(20, 250, '#ff6f8a', 0.9), S.flower(130, 254, '#ffc53d', 0.9), S.flower(150, 258, '#ff6fb5', 0.8),
+      P({ x: 210, y: 288, s: 1.2, pose: 'walkdog', face: 1, hair: 'short', hairColor: S.HAIR.black, shirt: '#7c6cf0', pants: '#40506a', leash: [320, 262] }),
+      S.dog(305, 290, 1.05, 1, '#c98b4f'),
+      S.bench(362, 290, 110),
+      P({ x: 398, y: 290, s: 1.1, pose: 'sitread', hold: 'book', face: -1, hair: 'pony', hairColor: S.HAIR.brown, shirt: '#ff7a59', pants: '#2b2f77', skirt: true, kid: true, seat: 45 }),
+    ]),
+    q1: { q: 'Please look at the passage. When do many people take walks in the park?', a: 'In the morning.', keys: [['morning']] },
+    q2: { q: 'What do people enjoy in spring?', a: 'They enjoy the beautiful flowers.', keys: [['flowers', 'flower']] },
+    q3: { q: 'Please look at the man. What is he doing?', a: "He's walking his dog.", keys: [['walking', 'walk'], ['dog']] },
+  },
+  {
+    id: 'soccer',
+    title: "Taro's Team",
+    passage: 'Taro is on the soccer team at his school. His team practices after school every day. Taro wants to play in a big game next month.',
+    ja: 'タロウのチーム｜タロウは学校のサッカー部に入っています。彼のチームは毎日放課後に練習します。タロウは来月の大事な試合に出たいと思っています。',
+    scene: () => S.scene('park', [
+      S.tree(430, 226, 0.9),
+      `<g stroke="#fff" stroke-width="6" fill="none"><path d="M320 200 V150 H440 V200"/></g><path d="M326 156 H434 V198 H326Z" fill="rgba(255,255,255,.25)"/>`,
+      P({ x: 150, y: 286, s: 1.2, pose: 'run', face: 1, kid: true, hair: 'short', hairColor: S.HAIR.black, shirt: '#ff7a59', pants: '#2b2f77' }),
+      S.ball(210, 280, 11, '#ffffff'), S.ball(270, 284, 11, '#ffffff'), S.ball(60, 282, 11, '#ffffff'),
+      P({ x: 370, y: 290, s: 1.15, pose: 'wave', face: -1, hair: 'cap', capColor: '#1dd3b0', shirt: '#4cc9f0', pants: '#40506a' }),
+    ]),
+    q1: { q: 'Please look at the passage. What team is Taro on?', a: "He's on the soccer team.", keys: [['soccer']] },
+    q2: { q: "When does Taro's team practice?", a: 'After school every day.', keys: [['after'], ['school']] },
+    q3: { q: 'Please look at the picture. How many balls are there?', a: 'There are three.', keys: [['three', '3']] },
+  },
+  {
+    id: 'birthday',
+    title: "Emi's Birthday",
+    passage: "Emi's birthday is in May. Last year, her family had a party at home. Her father made a big cake, and her friends sang a song for her.",
+    ja: 'エミの誕生日｜エミの誕生日は5月です。去年、彼女の家族は家でパーティーを開きました。お父さんが大きなケーキを作り、友達が彼女のために歌を歌いました。',
+    scene: () => S.scene('room', [
+      S.windowBox(40, 40, 100, 80), S.poster(320, 40, 110, 46, 'HAPPY BIRTHDAY'),
+      S.balloon(180, 70, '#ff6f8a'), S.balloon(212, 58, '#ffd23f'), S.balloon(244, 72, '#4cc9f0'), S.balloon(276, 60, '#1dd3b0'),
+      S.table(160, 276, 150), S.cake(236, 216),
+      P({ x: 110, y: 290, s: 1.15, pose: 'wave', face: 1, kid: true, hair: 'long', hairColor: S.HAIR.black, shirt: '#ff6fb5', pants: '#2b2f77', skirt: true }),
+      P({ x: 380, y: 290, s: 1.2, pose: 'point', face: -1, hair: 'short', hairColor: S.HAIR.brown, shirt: '#2ec4a6', pants: '#40506a', skin: S.SKIN[1] }),
+    ]),
+    q1: { q: "Please look at the passage. When is Emi's birthday?", a: "It's in May.", keys: [['may']] },
+    q2: { q: 'Who made a big cake?', a: 'Her father did.', keys: [['father', 'dad']] },
+    q3: { q: 'Please look at the picture. How many balloons are there?', a: 'There are four.', keys: [['four', '4']] },
+  },
+  {
+    id: 'beach',
+    title: 'Summer at the Beach',
+    passage: "Yuki's family goes to the beach every summer. Yuki likes swimming in the sea. Her brother likes taking pictures of the sea. They always have a great time.",
+    ja: '海での夏｜ユキの家族は毎年夏に海へ行きます。ユキは海で泳ぐのが好きです。お兄さんは海の写真を撮るのが好きです。彼らはいつもとても楽しい時を過ごします。',
+    scene: () => S.scene('beach', [
+      S.parasol(90, 262),
+      P({ x: 250, y: 280, s: 1.2, pose: 'photo', hold: 'camera', face: 1, kid: true, hair: 'short', hairColor: S.HAIR.black, shirt: '#ffd23f', pants: '#2b2f77' }),
+      P({ x: 400, y: 286, s: 1.1, pose: 'wave', face: -1, kid: true, hair: 'pony', hairColor: S.HAIR.black, shirt: '#ff6fb5', pants: '#4cc9f0', skirt: true }),
+      S.ball(160, 276, 12, '#ff7a59'),
+    ]),
+    q1: { q: "Please look at the passage. Where does Yuki's family go every summer?", a: 'They go to the beach.', keys: [['beach', 'sea']] },
+    q2: { q: 'What does Yuki like?', a: 'She likes swimming in the sea.', keys: [['swimming', 'swim']] },
+    q3: { q: 'Please look at the boy. What is he doing?', a: "He's taking a picture.", keys: [['taking', 'take'], ['picture', 'pictures', 'photo', 'photos']] },
+  },
+  {
+    id: 'guitar',
+    title: "Aki's Guitar",
+    passage: 'Aki started playing the guitar last year. She practices it every night after dinner. Next year, she wants to play in a band with her friends.',
+    ja: 'アキのギター｜アキは去年ギターをひき始めました。彼女は毎晩夕食のあとに練習します。来年、彼女は友達とバンドで演奏したいと思っています。',
+    scene: () => S.scene('room', [
+      S.windowBox(330, 36, 100, 80), S.picture(60, 50, 70, 50), S.clock(220, 60, 22, 8, 0),
+      S.chair(140, 290, 1),
+      P({ x: 134, y: 290, s: 1.15, pose: 'guitar', hold: 'guitar', face: 1, hair: 'long', hairColor: S.HAIR.brown, shirt: '#7c6cf0', pants: '#2b2f77', skirt: true, seat: 40 }),
+      S.sofa(290, 292, 150, '#1dd3b0'),
+      P({ x: 350, y: 290, s: 1.1, pose: 'sitread', hold: 'book', face: -1, kid: true, hair: 'short', hairColor: S.HAIR.black, shirt: '#ff7a59', pants: '#40506a', seat: 42 }),
+    ]),
+    q1: { q: 'Please look at the passage. When does Aki practice the guitar?', a: 'She practices it every night after dinner.', keys: [['night', 'dinner']] },
+    q2: { q: 'What does Aki want to do next year?', a: 'She wants to play in a band with her friends.', keys: [['band']] },
+    q3: { q: 'Please look at the boy. What is he doing?', a: "He's reading a book.", keys: [['reading', 'read'], ['book']] },
+  },
+  {
+    id: 'train',
+    title: "Mr. Kato's Trips",
+    passage: 'Mr. Kato lives in Tokyo. He often goes to Osaka for his work. He usually takes the train there because it is fast and easy. He likes to read on the train.',
+    ja: 'カトウさんの出張｜カトウさんは東京に住んでいます。彼は仕事でよく大阪へ行きます。速くて楽なので、たいていそこへは電車で行きます。彼は電車の中で読書をするのが好きです。',
+    scene: () => S.scene('station', [
+      S.clock(240, 70, 24, 10, 10),
+      S.bench(40, 290, 130),
+      P({ x: 90, y: 290, s: 1.15, pose: 'sitread', hold: 'book', face: 1, hair: 'short', hairColor: S.HAIR.black, shirt: '#40506a', pants: '#2b2f77', seat: 45 }),
+      P({ x: 310, y: 290, s: 1.2, pose: 'phone', hold: 'phone', face: -1, hair: 'bun', hairColor: S.HAIR.brown, shirt: '#ff7a59', pants: '#40506a', skirt: true, skin: S.SKIN[1] }),
+      P({ x: 420, y: 290, s: 1.15, pose: 'hold', hold: 'bag', face: -1, kid: true, hair: 'cap', capColor: '#ffd23f', shirt: '#4cc9f0', pants: '#2b2f77' }),
+    ]),
+    q1: { q: 'Please look at the passage. Where does Mr. Kato live?', a: 'He lives in Tokyo.', keys: [['tokyo']] },
+    q2: { q: 'Why does Mr. Kato usually take the train?', a: 'Because it is fast and easy.', keys: [['fast', 'easy']] },
+    q3: { q: 'Please look at the woman. What is she doing?', a: "She's talking on the phone.", keys: [['talking', 'talk', 'calling', 'call', 'using'], ['phone']] },
+  },
+  {
+    id: 'rain',
+    title: 'Rainy Days',
+    passage: 'It rains a lot in June in Japan. On rainy days, many children play inside. Kenta likes to read comic books at home on rainy days.',
+    ja: '雨の日｜日本では6月に雨がたくさん降ります。雨の日には、多くの子どもたちが家の中で遊びます。ケンタは雨の日に家でまんがを読むのが好きです。',
+    scene: () => S.scene('street', [
+      S.raindrops(), S.puddle(120, 272, 80), S.puddle(360, 282, 60),
+      P({ x: 180, y: 286, s: 1.2, pose: 'umbrella', hold: 'umbrella', face: 1, kid: true, hair: 'pony', hairColor: S.HAIR.black, shirt: '#ffd23f', pants: '#2b2f77', skirt: true }),
+      S.busStop(420, 290),
+      P({ x: 330, y: 290, s: 1.15, pose: 'stand', face: -1, hair: 'short', hairColor: S.HAIR.brown, shirt: '#2ec4a6', pants: '#40506a' }),
+    ]),
+    q1: { q: 'Please look at the passage. When does it rain a lot in Japan?', a: 'In June.', keys: [['june']] },
+    q2: { q: 'What does Kenta like to do on rainy days?', a: 'He likes to read comic books at home.', keys: [['read', 'reading'], ['comic', 'comics', 'books', 'book']] },
+    q3: { q: 'Please look at the girl. What is she holding?', a: "She's holding an umbrella.", keys: [['umbrella']] },
+  },
+  {
+    id: 'garden',
+    title: "Mr. Tanaka's Garden",
+    passage: 'Mr. Tanaka has a big garden. He grows vegetables and flowers there. Every summer, he gives tomatoes to his neighbors. They like his tomatoes very much.',
+    ja: 'タナカさんの庭｜タナカさんは大きな庭を持っています。そこで野菜と花を育てています。毎年夏、彼は近所の人たちにトマトをあげます。近所の人たちは彼のトマトが大好きです。',
+    scene: () => S.scene('garden', [
+      S.flower(40, 250, '#ff6f8a', 1), S.flower(62, 254, '#ffc53d', 0.9), S.flower(84, 250, '#ff6fb5', 1), S.flower(106, 254, '#7c6cf0', 0.9),
+      P({ x: 170, y: 286, s: 1.15, pose: 'water', hold: 'wateringcan', face: -1, kid: true, hair: 'long', hairColor: S.HAIR.black, shirt: '#4cc9f0', pants: '#2b2f77', skirt: true }),
+      P({ x: 360, y: 290, s: 1.2, pose: 'carry', hold: 'box', face: -1, hair: 'bald', shirt: '#2ec4a6', pants: '#6b4428', skin: S.SKIN[2] }),
+      S.apple(300, 290), S.apple(316, 292),
+    ]),
+    q1: { q: 'Please look at the passage. What does Mr. Tanaka grow in his garden?', a: 'He grows vegetables and flowers.', keys: [['vegetables', 'vegetable'], ['flowers', 'flower']] },
+    q2: { q: 'What does Mr. Tanaka give to his neighbors every summer?', a: 'He gives tomatoes to them.', keys: [['tomatoes', 'tomato']] },
+    q3: { q: 'Please look at the girl. What is she doing?', a: "She's watering the flowers.", keys: [['watering', 'water', 'giving'], ['flowers', 'flower', 'plants']] },
+  },
+];
+
+// No.4：受験者自身についての質問（Yes / No で答えたあと、答えによってちがう質問が続く）
+export const PERSONAL = [
+  { q: 'Do you like sports?', yes: 'What sport do you like?', no: 'What do you like to do on weekends?', modelYes: 'I like tennis.', modelNo: 'I like to read books.' },
+  { q: 'Do you have any pets?', yes: 'What pet do you have?', no: 'What animal do you like?', modelYes: 'I have a dog.', modelNo: 'I like cats.' },
+  { q: 'Do you like music?', yes: 'What kind of music do you like?', no: 'What do you like to do after school?', modelYes: 'I like pop music.', modelNo: 'I like to play soccer.' },
+  { q: 'Do you often cook?', yes: 'What do you cook?', no: 'What food do you like?', modelYes: 'I often make curry.', modelNo: 'I like pizza.' },
+  { q: 'Did you go anywhere last weekend?', yes: 'Where did you go?', no: 'What did you do last weekend?', modelYes: 'I went to the park.', modelNo: 'I stayed home and watched TV.' },
+  { q: 'Are you going to go out this weekend?', yes: 'Where are you going to go?', no: 'What are you going to do this weekend?', modelYes: "I'm going to go to the library.", modelNo: "I'm going to study at home." },
+  { q: 'Do you like reading books?', yes: 'What kind of books do you like?', no: 'What do you do in your free time?', modelYes: 'I like books about animals.', modelNo: 'I play video games.' },
+  { q: 'Do you get up early?', yes: 'What time do you get up?', no: 'What time do you usually get up?', modelYes: 'I get up at six.', modelNo: 'I get up at seven thirty.' },
+  { q: 'Can you swim?', yes: 'Where do you usually swim?', no: 'What sport can you play?', modelYes: 'I usually swim at the city pool.', modelNo: 'I can play basketball.' },
+  { q: 'Do you like summer?', yes: 'What do you do in summer?', no: 'What season do you like?', modelYes: 'I go swimming in the sea.', modelNo: 'I like winter.' },
+  { q: 'Do you help your family at home?', yes: 'What do you do?', no: 'What do you do after dinner?', modelYes: 'I wash the dishes.', modelNo: 'I do my homework.' },
+  { q: 'Do you like movies?', yes: 'What kind of movies do you like?', no: 'What do you like to watch on TV?', modelYes: 'I like action movies.', modelNo: 'I like to watch soccer games.' },
+  { q: 'Do you have any brothers or sisters?', yes: 'Please tell me about them.', no: 'What do you do with your friends?', modelYes: 'I have a brother. He is ten years old.', modelNo: 'I play games with my friends.' },
+  { q: 'Do you go to school by bike?', yes: 'How long does it take?', no: 'How do you go to school?', modelYes: 'It takes ten minutes.', modelNo: 'I walk to school.' },
+  { q: 'Did you watch TV last night?', yes: 'What did you watch?', no: 'What did you do last night?', modelYes: 'I watched a soccer game.', modelNo: 'I read a book.' },
+];
+
+// 試験官（コンピューター）のせりふ
+export const SCRIPT = {
+  hello: 'Hello.',
+  how: 'How are you?',
+  start: "This is the Grade 4 speaking test. Let's begin.",
+  silent: 'First, please read the passage silently.',
+  aloud: 'All right. Now, please read it aloud.',
+  questions: "Now, I'm going to ask you four questions.",
+  end: 'This is the end of the test. Thank you. Goodbye.',
+  pardon: "OK. I'll say it again.",
+};
